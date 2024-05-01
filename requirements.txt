@@ -1,0 +1,14 @@
+langchain
+qdrant-client
+pypdf
+openai
+langchain_community
+python-dotenv
+pypdf
+langchain_openai
+eventlet
+Flask
+Flask-Cors
+Flask-SocketIO
+langchain_community
+
