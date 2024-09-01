@@ -10,6 +10,7 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from flask_cors import CORS
 
 from flask import Flask, request, jsonify
 
@@ -38,12 +39,13 @@ memory = ConversationBufferMemory(
 # Create a client instance connected to the local Qdrant server
 qdrant_client = QdrantClient(host="localhost", port=PORT)
 
-# FLASK
+# Flask App Setup
 app = Flask(__name__)
+CORS(app)
 
 def get_sys_prompt():
     # # Build prompt
-    template = """Say I am a customer service assistant working for Smartpredict and invite him to ask about us if only we ask you about something that does not concern Smartpredict else don't say it.\
+    template = """You are a customer service assistant working for Smartpredict and invite him to ask about us if only we ask you about something that does not concern Smartpredict else don't say it.\
     Use the following pieces of context to answer the question. \
     Always Ensure your responses align with the values and goals of SmartPredict Services. \
     Alaways Maintain the same language as the follow up input message.
